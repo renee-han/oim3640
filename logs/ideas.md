@@ -1,0 +1,4 @@
+#Ideas 
+[Feb. 23, 2026]
+* For my mini project #1, my idea is to build a secret random number generator game. From the feedback I received in office hours, I need to wrap everything into functions and one possible idea that was brainstormed was to make it more creative. 
+* To make this game creative, I want to add some additions like multiple rounds or attempts i.e. if a player rounds out of attempts, they can retry the game (maybe a loop?). Another idea to make it creative was a hot, cold, warm system where if they are close to the number, I can have something that says getting warmer or if they're really off, something like you're getting colder. Finally, I could also make this entire game have a theme i.e. a treasure hunting game and periodic messages whenever there's a user interaction i.e. "You're getting closer to the correct number!" or "Not quite, try again!"
