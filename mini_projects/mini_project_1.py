@@ -1,41 +1,45 @@
-## Welcome to the Secret Number Guessing Game Program
-## This section imports a random number generator function
-#request user to enter a number
-print("Enter a number between 1 and 100")
+## Welcome to the Treasure Hunt Game! The goal of this game is to unlock a treasure chest filled with gold and the only way you can do that is if you guess the correct number!
+#Initalization 
+max_tries = 4
+def generate_secret_number():
+    """This function picks the correct number guess"""
+    secret_number = 88
+    return secret_number
+correct_number = generate_secret_number() #Don't print this because the answer will be shown to player
 
-#Display the max, min, and average of a range of numbers 
-numbered_list = (100,22,57,99,1,32)
-min_list = min(numbered_list)
-print(min_list)
-max_list = max(numbered_list)
-print(max_list)
+#Prize Tiers
+tier_1_prize = "👑"
+tier_2_prize = "💎"
+tier_3_prize = "🪙"
+#Set Up 
+def welcome():
+    """Intro to Game """
+    print("Welcome to the Secret Number Treasure Hunt Game!")
+    print("Here are the rules of this game: ")
+    print("You will be given 4 tries to guess a number between 1 and 20 and if you guess correctly, you will be able to unlock the treasure chest!")
+    print("If you happen to guess in a certain number of tries, you'll be able to win one of the prizes from our tier selection")
+    print("Tier 1 means if you guess the right number in 1 try, you'll earn the crown 👑")
+    print("Tier 2 means if you guess the right number in 2 tries, you'll get a gem 💎")
+    print("And finally, if you guess in 3 or more tries, you'll earn a coin 🪙")
+    print("Good luck traveler!")
+welcome()
 
-#calculate the average
-avg_list = sum(numbered_list) / len(numbered_list)
-print(avg_list)
+#Start of Game - Player Entry
+def player_guess():
+    """This is the point where the player guesses for the number"""
+    player_input = int(input("Guess a number between 1 and 20: "))
+    print(f"The number you entered is: {player_input}")
 
-#round the average to 2 decimal places
-avg_list = round(avg_list,2)
-print(avg_list)
-
-#input a number and print it back out
-my_input = int(input("Enter a number between 1 and 100:"))
-print("The number you entered is ", my_input)
-
-#import a function to assign a random number
-import random
-secret_number = random.randint(1,100)
-print("The secret random number is", secret_number)
-
-#loop until variable is equal to or less than 5
-current_number = 1
-while current_number <= 5: 
-  print(current_number)
-  current_number = current_number + 1
-
-# evaluate whether a number is positive or negative 
-num = -2
-if num > 0:
-  print("the number is positive")
+tries = 0
+#Player makes a guess
+while tries < max_tries:
+    guess = player_guess() #Stores the player's input
+    tries = tries + 1
+#Checking if guesses were correct or not
+    if guess == correct_number:
+        print("Congratulations! You guessed the correct number which was {correct_number}.") #Guessing right on the 1st try
+        print("You earned yourself the {tier_1_prize}")
+    break
 else:
-  print("the number is negative")
+    tries = tries + 1
+    print("")
