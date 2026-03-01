@@ -46,7 +46,7 @@ def player_guess():
 #5. If I get it in 3 tries = coin = if not go back up again and keep going until hit max tries
 
 #Player makes a guess (this while loop will keep going until the user runs out of tries)
-
+wallet = []
 playing = True 
 while playing:
     tries = 0 #When the player guesses, the tries goes up to 1
@@ -56,12 +56,26 @@ while playing:
         if guess == correct_number: #If the player guessed correctly whether that be in 1, 2, 3, or more tries
             if tries == 1:
                 print(f"Congratulations! You guessed the correct number in your first attempt. You've earned yourself the {tier_1_prize}") #Guessing right on the 1st try
+                wallet.append(tier_1_prize)
             elif tries == 2: 
                 print(f"Congratulations! You guessed the correct number in 2 attempts. You've earned yourself the {tier_2_prize}") #Guessing right on the 2nd try
+                wallet.append(tier_2_prize)
             else:
                 print(f"Congratulations! You guessed the correct number in 3 or more attempts. You've earned yourself the {tier_3_prize}") #Guessing right on the 3rd or more try
+                wallet.append(tier_3_prize)
+            print(f"Your wallet: {''.join(wallet)}") #Displays prize accumulation after every round
             break
         else:
             print("Not quite there, keep searching")
     if tries == max_tries and guess != correct_number:
         print(f"Sorry, you're all out of tries! Better luck next time.")
+    again = input("Want to play again? Yes or No?")
+    if again == "Yes":
+        playing = True
+    if again == "No": #This is OUTSIDE the loop, will run when player guesses it correctly in their # of attempts, runs out of attempts, or doesn't want to play anymore 
+        playing = False 
+        print(f"Thanks for playing! Here's what your wallet of prizes looks like: {''.join(wallet)}")
+
+#Bonus Element
+#Adding a wallet where players can store accumulated prizes and see how much they've earned 
+#See above for further details
