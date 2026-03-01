@@ -30,7 +30,7 @@ def player_guess():
     while True:
         try:
             player_input = int(input("Guess a number between 1 and 100: "))
-            if 1 <= player_input <= 100:
+            if 1 <= player_input <= 100: #If the player inputs a number greater than 1 and less than 100
                 print(f"The number you entered is: {player_input}")
                 return player_input
             else:
@@ -45,21 +45,23 @@ def player_guess():
 #4. If I don't get it in 2 tries, else, loops back agian = 2+1 = 3rd try
 #5. If I get it in 3 tries = coin = if not go back up again and keep going until hit max tries
 
-tries = 0 #When the player guesses, the tries goes up to 1
 #Player makes a guess (this while loop will keep going until the user runs out of tries)
-while tries < max_tries:
-    guess = player_guess() #Stores the player's input
-    tries = tries + 1 #Player makes a guess, # of tries goes up
-    if guess == correct_number: #If the player guessed correctly whether that be in 1, 2, 3, or more tries
-        if tries == 1:
-            print(f"Congratulations! You guessed the correct number which was {correct_number}. You've earned yourself the {tier_1_prize}") #Guessing right on the 1st try
-        elif tries == 2: 
-            print(f"Congratulations! You guessed the correct number which was {correct_number} in 2 attempts. You've earned yourself the {tier_2_prize}") #Guessing right on the 2nd try
+
+playing = True 
+while playing:
+    tries = 0 #When the player guesses, the tries goes up to 1
+    while tries < max_tries:
+        guess = player_guess() #Stores the player's input
+        tries = tries + 1 #Player makes a guess, # of tries goes up
+        if guess == correct_number: #If the player guessed correctly whether that be in 1, 2, 3, or more tries
+            if tries == 1:
+                print(f"Congratulations! You guessed the correct number in your first attempt. You've earned yourself the {tier_1_prize}") #Guessing right on the 1st try
+            elif tries == 2: 
+                print(f"Congratulations! You guessed the correct number in 2 attempts. You've earned yourself the {tier_2_prize}") #Guessing right on the 2nd try
+            else:
+                print(f"Congratulations! You guessed the correct number in 3 or more attempts. You've earned yourself the {tier_3_prize}") #Guessing right on the 3rd or more try
+            break
         else:
-            print(f"Congratulations! You guessed the correct number which was {correct_number} in 3 or more attempts. You've earned yourself the {tier_3_prize}") #Guessing right on the 3rd try
-        break
-    else:
-        print("Not quite there, keep searching")
-if tries == max_tries and guess != correct_number:
-    print(f"Sorry, you're all out of tries! The correct number was {correct_number}")
-    
+            print("Not quite there, keep searching")
+    if tries == max_tries and guess != correct_number:
+        print(f"Sorry, you're all out of tries! Better luck next time.")
