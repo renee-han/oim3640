@@ -7,4 +7,4 @@ This is my course repository for OIM3640
 - Interests: Data driven decision making, playing the piano, and reading
 
 # My Projects
-- [First Project](./mini-projects/mini_project_1_final.py)
+- [First Project](./mini_projects/mini_project_1_final.py)
