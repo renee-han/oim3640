@@ -1,0 +1,10 @@
+## Date: 2026-03-01
+
+**What I asked AI to do:**
+- Throughout this entire project, I originally started off with using ChatGPT, however, I then transitioned into using Claude Code as it was strongly recommended in class. When I switched over, I realized that I actually liked Claude a lot more and the way it explained certain concepts or chunks of code was a lot cleaner and intuitive than ChatGPT for some reason! Instead of directly copying and pasting the code, I really challenged myeslf in continuing to ask follow up questions whenever Claude gave me code. I didn't just take it for granted and directly use it, I kept asking Claude questions to explain why the logic they suggested was the way it was or if I could do it differently with some methods I came up with. I also asked AI to help me flesh out some of the more difficult while looping and logic to make sure what I had in my mind was able to be executed in real time. This invovled a lot of nesting and it eventually got a bit complex so Claude really helped me in taking a step back and building each layer one by one.
+
+**What I didn't understand in the generated code:**
+- What I am still a little fuzzy on from the generated code is how I had to wrap the entire while loop that I originally had that was responsible for the player interaction and actually playing the game in another while loop. What the outer loop does is that it allows the user to keep playing without having to launch the entire program again and starts new rounds until the player says No. The inner loop is just responsible for managing the guessing and attempts. 
+
+**What I learned:**
+- What I learned was that code can behave differently when it's inside vs. outside a loop or an if, elif, else statement and can tremendously impact how the program or logic you want gets to run. For example, having something inside a loop will continue running as long as the loop condition is true, whereas the code outside the loop will only run once when the loop condition becomes false.  
