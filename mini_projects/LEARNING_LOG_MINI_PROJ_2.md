@@ -1,0 +1,10 @@
+## Date: 2026-04-04
+
+**What I asked AI to do:**
+[In the second mini project, I used both ChatGPT and Claude Code to build some of the components out. The first thing that I asked AI was related to cleaning and pre-processing. In the textbook, there was a way to clean and remove things like punctuation using unicodedata but AI recommended that it was a bit too complicated for the scope of my project which was to keep things pretty simple but meaningful. Claude and Chat recommended me to clean and pre-process by getting rid of any em dashes first and then anything that wasn't a character i.e. a number in a date stamp or numbers in calorie count or special symbols like ! or * wasn't returned. AI also played a big role in helping me quickly get rid of any stop words and I used it a lot to comb through my current list of unique words or top 10 words to see if there were any additional words that weren't meaningful to the analysis. After many iterations, I believe that AI helped me refine all the raw text down very well and ultimately, I am satisifed with the overall meaningful results.]
+
+**What I didn't understand in the generated code:**
+[What I'm still a bit confused on is the  loop I have after I read in the file which includes 2 for loops! It was tricky keeping track of both for loosp because they both had connections to the previous cleaning steps.]
+
+**What I learned:**
+[I learned so much more about the CPG industry and genuinely had a lot of fun building this second project out. For example, I discovered that more indulgent brands like McDonalds or Baskin Robbins really want to craft a story and pull a customer in before they've even bought the product! By reading the text as an audience member, it really entices and convince you to buy their product even if you've never even heard of it. That's really the magic behind many QSR/CPG companies and what is so valuable to their branding strategy!]
