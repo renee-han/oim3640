@@ -489,3 +489,60 @@ plot_top_10(top_10_sg_1, "Sweetgreen 1")
 plot_top_10(top_10_sg_2, "Sweetgreen 2")
 plot_top_10(top_10_chobani, "Chobani")
 
+#Word Clouds
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+#BR BANANA
+wordcloud = WordCloud(width=800, height=400, background_color="white").generate(" ".join(unique_words_banana))
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.title("Baskin-Robbins (Banana) Unique Words")
+plt.show()
+
+#BR DUBAI
+wordcloud = WordCloud(width=800, height=400, background_color="white").generate(" ".join(unique_words_dubai))
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.title("Baskin-Robbins (Dubai) Unique Words")
+plt.show()
+
+#MCD
+wordcloud = WordCloud(width=800, height=400, background_color="white").generate(" ".join(unique_words_mcd))
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.title("McDonald's Unique Words")
+plt.show()
+
+#SG 1
+wordcloud = WordCloud(width=800, height=400, background_color="white").generate(" ".join(unique_words_sg_1))
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.title("Sweetgreen 1 Unique Words")
+plt.show()
+
+#SG 2
+wordcloud = WordCloud(width=800, height=400, background_color="white").generate(" ".join(unique_words_sg_2))
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.title("Sweetgreen 2 Unique Words")
+plt.show()
+
+#CHOBANI
+wordcloud = WordCloud(width=800, height=400, background_color="white").generate(" ".join(unique_words_chobani))
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.title("Chobani Unique Words")
+plt.show()
+
