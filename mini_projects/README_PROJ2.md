@@ -11,30 +11,30 @@
 ## Indulgent Brands Graphs
 
 ### Baskin-Robbins (Banana Campaign)
-![Baskin Banana Top 10](<banana top 10.png>)
-![Baskin Banana Word Cloud](<Figure_1 (banana word cloud).png>)
+![Baskin Banana Top 10](banana_top10.png)
+![Baskin Banana Word Cloud](banana_wordcloud.png)
 
 ### Baskin-Robbins (Dubai Campaign)
-![Baskin Dubai Top 10](<dubai top 10.png>)
-![Baskin Dubai Word Cloud](<dubai word cloud.png>)
+![Baskin Dubai Top 10](dubai_top10.png)
+![Baskin Dubai Word Cloud](dubai_wordcloud.png)
 
 ### McDonald's
-![McDonalds Top 10](<mcd top 10.png>)
-![McDonalds Word Cloud](<mcd word cloud.png>)
+![McDonalds Top 10](mcd_top10.png)
+![McDonalds Word Cloud](mcd_wordcloud.png)
 
 ## Healthy Brands Graphs
 
 ### Sweetgreen (Wraps Campaign)
-![Sweetgreen 1 Top 10](<sg 1 top 10.png>)
-![Sweetgreen 1 Word Cloud](<sg 1 word cloud.png>)
+![Sweetgreen 1 Top 10](sg1_top10.png)
+![Sweetgreen 1 Word Cloud](sg1_wordcloud.png)
 
 ### Sweetgreen (Function Collab)
-![Sweetgreen 2 Top 10](<sg 2 top 10.png>)
-![Sweetgreen 2 Word Cloud](<sg 2 word cloud.png>)
+![Sweetgreen 2 Top 10](sg2_top10.png)
+![Sweetgreen 2 Word Cloud](sg2_wordcloud.png)
 
 ### Chobani
-![Chobani Top 10](<chobani top 10.png>)
-![Chobani Word Cloud](<chobani word cloud.png>)
+![Chobani Top 10](chobani_top10.png)
+![Chobani Word Cloud](chobani_wordcloud.png)
 
 
 ## Conclusion: [What I found easier in this project was the text procurement and individuality that I could integrate. I feel like in the first project, I was still gaining my footing on Python as a whole and how everything worked i.e. functions, loops, etc. But, for text analysis, it's much more flexible and there are multiple ways to do things. What I found difficult was maintaining integrity of the original raw text file. I wanted to get rid of many of the stop words but there were some that AI recommended to remove that I disagreed on and still kept because I felt like it was valuable to the overall analysis. What ended up surprising me was that the text analysis results that I got were pretty consistent with my predictions and original assumptions. I thought that there was going to be a little bit of overlap and gray areas but it seemed like the results were steadily matching with the branding strategy of what one would think of from healthy vs. indulgent brands.]
