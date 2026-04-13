@@ -19,7 +19,7 @@ def long_lat(place_name):
     print(data) #this is a list of dicts
     lng, lat = data["features"][0]["geometry"]["coordinates"] #tuple = unpacking/packing: assigning the first value to lng and second to lat
     return lat, lng
-print(long_lat("Newbury Street"))
+
 
 #data is a dictionary bcz you converted it into JSON
 #'features': [{'type': 'Feature', 'geometry': {'coordinates': [-71.0795, 42.349516]
@@ -38,9 +38,32 @@ def mbta_stop(lat, lng):
     #sort distance is getting the closest stop and limiting to 1 result
     response = requests.get(url, params = params)  
     data = response.json()
+    print(data)
     stop = data["data"][0]["attributes"]
-    name = stop["name"]
+    name = stop["name"] #getting you 'name': 'Ring Rd @ Boylston St'
     wheelchair = stop["wheelchair_boarding"] == 1
     return name, wheelchair
-print(mbta_stop(42.349516, -71.0795))
+
+
+#data holds the entire dict 
+#data[data] gets you the entire list i.e. [{'attributes': {'address': None, 'at_street': 'Boylston Street', 'description': None, 'latitude': 42.348825, 'location_type': 0, 'longitude': -71.080571, 'municipality': 'Boston', 'name': 'Ring Rd @ Boylston St', 'on_street': 'Ring Road', 'platform_code': None, 'platform_name': None, 'vehicle_type': 3, 'wheelchair_boarding': 1}, 'id': '174', 'links': {'self': '/stops/174'}, 'relationships': {'facilities': {'links': {'related': '/facilities/?filter[stop]=174'}}, 'parent_station': {'data': None}, 'zone': {'data': {'id': 'LocalBus', 'type': 'zone'}}}, 'type': 'stop'}]
+
+#data["data"][0] gets you first value in list which is {'address': None, 'at_street': 'Boylston Street', 'description': None, 'latitude': 42.348825, 'location_type': 0, 'longitude': -71.080571, 'municipality': 'Boston', 'name': 'Ring Rd @ Boylston St', 'on_street': 'Ring Road', 'platform_code': None, 'platform_name': None, 'vehicle_type': 3, 'wheelchair_boarding': 1}
+
+#data["data"][0]["attributes"] gets you 'attributes': {'address': None, 'at_street': 'Boylston Street', 'description': None, 'latitude': 42.348825, 'location_type': 0, 'longitude': -71.080571, 'municipality': 'Boston', 'name': 'Ring Rd @ Boylston St'}
+
+#Calling both functions together 
+def find_stop_near(place_name):
+    lat, lng = long_lat(place_name) #first function
+    stop_name, wheelchair = mbta_stop(lat, lng) #second function
+    return stop_name, wheelchair
+
+def main():
+    print(find_stop_near("Museum of Fine Arts"))
+    print(find_stop_near("Seaport"))
+main()
+
+
+
+
     
