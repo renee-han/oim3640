@@ -9,3 +9,4 @@ This is my course repository for OIM3640
 # My Projects
 - [First Project](./mini_projects/mini_project_1_final.py)
 - [Second Project](./mini_projects/mini_project_2_code.py)
+- [Third Project](./mini_projects/app.py)
