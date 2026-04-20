@@ -14,14 +14,15 @@ MBTA_KEY = os.getenv("MBTA_KEY")
 
 def long_lat(place_name):
     url = "https://api.mapbox.com/search/searchbox/v1/forward"
-    params = {"q": place_name, "access_token": MAPBOX_KEY, "limit": 1, "proximity": "-71.0589,42.3601"} #Error handling: keeps inputs to the nearby downton Boston region in case someone intputs somewhere not in MA 
+    params = {"q": place_name, "access_token": MAPBOX_KEY, "limit": 1, "proximity": "-71.0589,42.3601", "bbox": "-71.9,42.0,-70.5,42.9"} #Error handling: keeps inputs to the nearby downton Boston region in case someone intputs somewhere not in MA 
     response = requests.get(url, params = params) #sends request to MapBox for data
     response.raise_for_status() #handles api errors 
     data = response.json()#converts data into dict/JSON form 
     if not data["features"]:
         raise ValueError(f"Could not find location: {place_name}")
     print(data) #this is a list of dicts
-    lng, lat = data["features"][0]["geometry"]["coordinates"] #tuple = unpacking/packing: assigning the first value to lng and second to lat
+    lng, lat = data["features"][0]["geometry"]["coordinates"]
+     #tuple = unpacking/packing: assigning the first value to lng and second to lat
     return lat, lng
 
 
@@ -49,7 +50,9 @@ def mbta_stop(lat, lng):
     stop = data["data"][0]["attributes"]
     name = stop["name"] #getting you 'name': 'Ring Rd @ Boylston St'
     wheelchair = stop["wheelchair_boarding"] == 1
-    return name, wheelchair
+    stop_lat = stop["latitude"]
+    stop_lng = stop["longitude"]
+    return name, wheelchair, stop_lat, stop_lng 
 
 
 #data holds the entire dict 
@@ -61,16 +64,10 @@ def mbta_stop(lat, lng):
 
 #Calling both functions together 
 def find_stop_near(place_name):
-    lat, lng = long_lat(place_name) #first function
-    stop_name, wheelchair = mbta_stop(lat, lng) #second function
-    return stop_name, wheelchair
+    lat, lng = long_lat(place_name)
+    stop_name, wheelchair, stop_lat, stop_lng = mbta_stop(lat, lng)
+    return stop_name, wheelchair, lat, lng, stop_lat, stop_lng
 
-def main():
-    print(find_stop_near("Museum of Fine Arts"))
-    print(find_stop_near("Seaport"))
-
-if __name__ == "__main__":
-    main()
 
 
 #Flask Section
@@ -84,17 +81,25 @@ def index():
 def nearest():
     place = request.form["place"]
     try:
-        stop_name, wheelchair = find_stop_near(place)
+        stop_name, wheelchair, place_lat, place_lng, stop_lat, stop_lng = find_stop_near(place)
         if "No MBTA stops" in stop_name:
             return render_template("index.html", error=stop_name)
-        return render_template("mbta-results.html", stop_name=stop_name, wheelchair=wheelchair, place=place)
+        return render_template("mbta-results.html", 
+            stop_name=stop_name, 
+            wheelchair=wheelchair, 
+            place=place,
+            place_lat=place_lat,
+            place_lng=place_lng,
+            stop_lat=stop_lat,
+            stop_lng=stop_lng,
+            mapbox_token=MAPBOX_KEY)
     except Exception as e:
         return render_template("index.html", error=f"Something went wrong: {e}")
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-#Error Handling
+
 
 
 
