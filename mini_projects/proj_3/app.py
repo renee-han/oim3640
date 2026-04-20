@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 load_dotenv() #goes into env file and loads the API key and the variable its assigned to into Python memory
+from flask import Flask, render_template, request
 MAPBOX_KEY = os.getenv("MAPBOX_KEY")
 MBTA_KEY = os.getenv("MBTA_KEY")
 
@@ -13,9 +14,12 @@ MBTA_KEY = os.getenv("MBTA_KEY")
 
 def long_lat(place_name):
     url = "https://api.mapbox.com/search/searchbox/v1/forward"
-    params = {"q": place_name, "access_token": MAPBOX_KEY, "limit": 1}
-    response = requests.get(url, params = params) #sends request to MapBox for data 
+    params = {"q": place_name, "access_token": MAPBOX_KEY, "limit": 1, "proximity": "-71.0589,42.3601"} #Error handling: keeps inputs to the nearby downton Boston region in case someone intputs somewhere not in MA 
+    response = requests.get(url, params = params) #sends request to MapBox for data
+    response.raise_for_status() #handles api errors 
     data = response.json()#converts data into dict/JSON form 
+    if not data["features"]:
+        raise ValueError(f"Could not find location: {place_name}")
     print(data) #this is a list of dicts
     lng, lat = data["features"][0]["geometry"]["coordinates"] #tuple = unpacking/packing: assigning the first value to lng and second to lat
     return lat, lng
@@ -37,8 +41,11 @@ def mbta_stop(lat, lng):
     "page[limit]": 1} #filter[lat] and filter[long] are defined by MBTA, NOT PYTHON = this is a rule/condition you set i.e. here are my coordinates and based on them, get the closest station
     #sort distance is getting the closest stop and limiting to 1 result
     response = requests.get(url, params = params)  
+    response.raise_for_status() #handles api errors
     data = response.json()
     print(data)
+    if not data["data"]:  
+        return "No MBTA stops found. Please enter a location in the Boston area!", False #error handling for if someone types an input that's not in MA
     stop = data["data"][0]["attributes"]
     name = stop["name"] #getting you 'name': 'Ring Rd @ Boylston St'
     wheelchair = stop["wheelchair_boarding"] == 1
@@ -65,7 +72,29 @@ def main():
 if __name__ == "__main__":
     main()
 
+
 #Flask Section
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/nearest", methods=["POST"])
+def nearest():
+    place = request.form["place"]
+    try:
+        stop_name, wheelchair = find_stop_near(place)
+        if "No MBTA stops" in stop_name:
+            return render_template("index.html", error=stop_name)
+        return render_template("mbta-results.html", stop_name=stop_name, wheelchair=wheelchair, place=place)
+    except Exception as e:
+        return render_template("index.html", error=f"Something went wrong: {e}")
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+#Error Handling
 
 
 
